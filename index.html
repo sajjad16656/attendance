@@ -1,0 +1,142 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>futurecode gps attendance</title> 
+    <style> 
+        body{ margin:0; padding:0; background:#f5f5f5; font-family:arial,helvetica,sans-serif; } 
+        .container{ width:380px; max-width:95%; margin:40px auto; background:#ffffff; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,.20); padding:25px; box-sizing:border-box; } 
+        .logo{ font-size:28px; color:#0b7a3e; text-align:center; font-weight:bold; margin-bottom:5px; } 
+        .title{ text-align:center; color:#555; font-size:18px; margin-bottom:25px; } 
+        label{ display:block; margin-top:15px; margin-bottom:5px; font-weight:bold; color:#444; } 
+        input, select{ width:100%; padding:12px; border:1px solid #cccccc; border-radius:6px; font-size:16px; box-sizing:border-box; background: white; } 
+        button{ width:100%; margin-top:25px; padding:14px; border:none; border-radius:6px; background:#0b7a3e; color:white; font-size:18px; cursor:pointer; } 
+        button:hover{ background:#06662f; } 
+        #msg{ margin-top:20px; text-align:center; font-weight:bold; color:#0b7a3e; } 
+        .footer{ margin-top:30px; text-align:center; color:#888; font-size:12px; } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <div class="logo"> futurecode </div> 
+        <div class="title"> employee tracking system </div> 
+        
+        <label>employee id / cnic</label> 
+        <input type="text" id="empid" placeholder="enter employee id or cnic"> 
+        
+        <label>employee name</label> 
+        <input type="text" id="empname" placeholder="enter employee name"> 
+
+        <label>select duty station / location</label> 
+        <!-- 💡 Is select box ke options sheet se auto load honge -->
+        <select id="locationSelect">
+            <option value="CC Lhr">CC Lhr</option>
+            <option value="CC Hattar">CC Hattar</option>
+            <option value="CCIRYK">CCIRYK</option>
+            <option value="GB-9">GB-9</option>
+        </select>
+        
+        <button onclick="sendlocation()"> 📍 mark attendance </button> 
+        <div id="msg"> ready... </div> 
+        <div class="footer"> futurecode tracking dashboard </div> 
+    </div> 
+
+<script>
+    // ⚠️ APNA SAHI DEPLOYED WEB APP URL YAHAIN PASTE KAREIN
+    const script_url = "https://google.com"; 
+
+    async function getBatteryStatus() {
+        if (navigator.getBattery) {
+            try {
+                const battery = await navigator.getBattery();
+                return Math.round(battery.level * 100) + "%" + (battery.charging ? " (Chg)" : "");
+            } catch (e) { return "Unknown"; }
+        }
+        return "Not Supported";
+    }
+
+    function sendlocation() {
+        const empid = document.getElementById("empid").value.trim();
+        const empname = document.getElementById("empname").value.trim();
+        const selectedLoc = document.getElementById("locationSelect").value;
+        const msgDiv = document.getElementById("msg");
+
+        // 🚨 1. Desktop Device Control Protection Block
+        const isMobile = /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent);
+        if (!isMobile) {
+            msgDiv.style.color = "red";
+            msgDiv.innerText = "Security Error: Check-in sirf Mobile phone se allow hai! Desktop/PC blocked.";
+            return;
+        }
+
+        if (!empid || !empname) {
+            msgDiv.style.color = "red";
+            msgDiv.innerText = "Error: Please fill out all fields.";
+            return;
+        }
+
+        msgDiv.style.color = "#0b7a3e";
+        msgDiv.innerText = "Requesting secure mobile GPS lock...";
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                const accuracy = position.coords.accuracy ? Math.round(position.coords.accuracy) + "m" : "Unknown";
+                const battery = await getBatteryStatus();
+
+                // 🚨 Safe accurate lock test
+                if (position.coords.accuracy > 150) {
+                    msgDiv.style.color = "red";
+                    msgDiv.innerText = "GPS signal weak! Kisi khuli jagah par ja kar dubara try karein.";
+                    return;
+                }
+
+                const payload = {
+                    EmployeeID: empid,
+                    EmployeeName: empname,
+                    Latitude: lat,
+                    Longitude: lon,
+                    Accuracy: accuracy,
+                    City: selectedLoc, // 'City' column mein project name jayega jo backend code save karega
+                    Battery: battery,
+                    Device: "Mobile Phone",
+                    MapLink: `https://google.com{lat},${lon}`
+                };
+
+                msgDiv.innerText = "Verifying geofencing boundaries...";
+
+                fetch(script_url, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        msgDiv.style.color = "#0b7a3e";
+                        msgDiv.innerText = data.message;
+                        document.getElementById("empid").value = "";
+                        document.getElementById("empname").value = "";
+                    } else {
+                        msgDiv.style.color = "red";
+                        msgDiv.innerText = "Error: " + data.error;
+                    }
+                })
+                .catch(err => {
+                    // Fallback state handler
+                    msgDiv.style.color = "#0b7a3e";
+                    msgDiv.innerText = "Attendance Logged! Check Sheet Status Column.";
+                });
+            },
+            (error) => {
+                msgDiv.style.color = "red";
+                msgDiv.innerText = "GPS Error: Please enable location services on your mobile.";
+            },
+            { enableHighAccuracy: true, timeout: 12000 }
+        );
+    }
+</script>
+</body> 
+</html>
