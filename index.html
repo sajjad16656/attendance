@@ -15,6 +15,10 @@
         button:hover{ background:#06662f; } 
         #msg{ margin-top:20px; text-align:center; font-weight:bold; color:#0b7a3e; } 
         .footer{ margin-top:30px; text-align:center; color:#888; font-size:12px; } 
+        /* 🌟 Visual Layout for Pakistani format styling */
+        .prefix-container { position: relative; display: flex; align-items: center; }
+        .prefix-text { position: absolute; left: 12px; font-size: 16px; color: #555; font-weight: bold; pointer-events: none; }
+        #empid { padding-left: 50px; } 
     </style> 
 </head> 
 <body> 
@@ -23,22 +27,25 @@
         <div class="title"> Employee Attendance/Tracking System </div> 
         
         <label>Employee Mobile No</label> 
-        <input type="text" id="empid" placeholder="enter employee mobile no"> 
+        <div class="prefix-container">
+            <span class="prefix-text">+92</span>
+            <!-- 🌟 Live block engine: numbers only and max 10 inputs allocation -->
+            <input type="tel" id="empid" placeholder="3001234567" maxlength="10" oninput="validateMobileInput(this)">
+        </div>
         
         <label>Employee name</label> 
         <input type="text" id="empname" placeholder="enter employee name"> 
 
         <label>Select duty station / location</label> 
-        <!-- 💡 Is select box ke options sheet se auto load honge -->
         <select id="locationSelect">
             <option value="CCI Lhr">CCI Lhr</option>
             <option value="CCI Fsd">CCI Fsd</option>
             <option value="CCI Hattar">CCI Hattar</option>
             <option value="CCI RYK">CCI RYK</option>
             <option value="GB-9">GB-9</option>
-             <option value="POF WAH">POF WAH</option>
-             <option value="FCC DK">FCC DK</option>
-             <option value="FFC Hazara">FFC Hazara</option>
+            <option value="POF WAH">POF WAH</option>
+            <option value="FCC DK">FCC DK</option>
+            <option value="FFC Hazara">FFC Hazara</option>
         </select>
         
         <button onclick="sendlocation()"> 📍 Mark Attendance </button> 
@@ -47,8 +54,28 @@
     </div> 
 
 <script>
-    // ⚠️ APNA SAHI DEPLOYED WEB APP URL YAHAIN PASTE KAREIN
     const script_url = "https://script.google.com/macros/s/AKfycbzxVqjPBgbf2YcFOyhpux6gxVQFThyOWCyXxpFW8z9PLA6ZeCQDJsQuNM6GEbnOQSTAYQ/exec";
+
+    // 🌟 LIVE FILTER LOGIC: Shuru mein 0 nahi likhne dega aur baaki alphabets block karega
+    function validateMobileInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, ''); // Clear letters
+        if (input.value.startsWith('0')) {
+            input.value = input.value.substring(1); // Drop the zero
+        }
+    }
+
+    // 🔒 Unique token hashing algorithm generator
+    function generateDeviceFingerprint() {
+        const specs = [
+            navigator.userAgent, screen.height, screen.width, screen.colorDepth, navigator.language, new Date().getTimezoneOffset()
+        ].join('||');
+        let hash = 0;
+        for (let i = 0; i < specs.length; i++) {
+            const char = specs.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char; hash |= 0; 
+        }
+        return "DEV-" + Math.abs(hash);
+    }
 
     async function getBatteryStatus() {
         if (navigator.getBattery) {
@@ -58,6 +85,13 @@
             } catch (e) { return "Unknown"; }
         }
         return "Not Supported";
+    }
+
+    function getDeviceOS() {
+        const ua = navigator.userAgent;
+        if (/Android/i.test(ua)) return "Android Mobile";
+        if (/iPhone|iPad/i.test(ua)) return "Apple iOS";
+        return "Mobile Phone";
     }
 
     function sendlocation() {
@@ -80,6 +114,13 @@
             return;
         }
 
+        // 🚨 2. Exact 10 digits parameters validation test
+        if (empid.length !== 10) {
+            msgDiv.style.color = "red";
+            msgDiv.innerText = "Error: Mobile number ghalat hai! Shuru ka 0 mita kar poore 10 hinde (3xxxxxxxxx) likhein.";
+            return;
+        }
+
         msgDiv.style.color = "#0b7a3e";
         msgDiv.innerText = "Requesting secure mobile GPS lock...";
 
@@ -89,8 +130,12 @@
                 const lon = position.coords.longitude;
                 const accuracy = position.coords.accuracy ? Math.round(position.coords.accuracy) + "m" : "Unknown";
                 const battery = await getBatteryStatus();
+                const deviceToken = generateDeviceFingerprint();
 
-                // 🚨 Safe accurate lock test
+                // Formatted mobile structure constructor string (+92 format integration)
+                const formattedMobile = "+92" + empid;
+
+                // 🚨 150m Weak accuracy check layer
                 if (position.coords.accuracy > 150) {
                     msgDiv.style.color = "red";
                     msgDiv.innerText = "GPS signal weak! Kisi khuli jagah par ja kar dubara try karein.";
@@ -98,18 +143,18 @@
                 }
 
                 const payload = {
-                    EmployeeID: empid,
+                    EmployeeID: formattedMobile, // Saves as +923001234567
                     EmployeeName: empname,
                     Latitude: lat,
                     Longitude: lon,
                     Accuracy: accuracy,
-                    City: selectedLoc, // 'City' column mein project name jayega jo backend code save karega
+                    City: selectedLoc, 
                     Battery: battery,
-                    Device: "Mobile Phone",
-                    MapLink: `https://google.com{lat},${lon}`
+                    Device: getDeviceOS(),
+                    DeviceToken: deviceToken // Unique identity signature token
                 };
 
-                msgDiv.innerText = "Verifying geofencing boundaries...";
+                msgDiv.innerText = "Verifying parameters against sheet database...";
 
                 fetch(script_url, {
                     method: "POST",
@@ -125,13 +170,12 @@
                         document.getElementById("empname").value = "";
                     } else {
                         msgDiv.style.color = "red";
-                        msgDiv.innerText = "Error: " + data.error;
+                        msgDiv.innerText = data.error;
                     }
                 })
                 .catch(err => {
-                    // Fallback state handler
-                    msgDiv.style.color = "#0b7a3e";
-                    msgDiv.innerText = "Attendance Logged! Check Sheet Status Column.";
+                    msgDiv.style.color = "red";
+                    msgDiv.innerText = "Network Error: Server response failure.";
                 });
             },
             (error) => {
