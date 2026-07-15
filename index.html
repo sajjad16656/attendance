@@ -788,4 +788,299 @@ function generateDeviceFingerprint() {
         hash |= 0;
 
     }
+    return "DEV-" + Math.abs(hash);
+
+}
+
+// Battery Status
+async function getBatteryStatus() {
+
+    if (!navigator.getBattery) {
+
+        return "Not Supported";
+
+    }
+
+    try {
+
+        const battery = await navigator.getBattery();
+
+        return Math.round(battery.level * 100) + "%" +
+            (battery.charging ? " (Charging)" : "");
+
+    }
+
+    catch (e) {
+
+        return "Unknown";
+
+    }
+
+}
+
+// Device OS
+function getDeviceOS() {
+
+    const ua = navigator.userAgent;
+
+    if (/Android/i.test(ua))
+        return "Android Mobile";
+
+    if (/iPhone|iPad|iPod/i.test(ua))
+        return "Apple iOS";
+
+    return "Unknown Device";
+
+}
+
+// Message Box
+function showMessage(text, color = "#0b7a3e") {
+
+    msg.style.color = color;
+
+    msg.innerHTML = text;
+
+}
+
+// Loading
+function showLoader() {
+
+    loader.style.display = "block";
+
+    btnIn.disabled = true;
+
+    btnOut.disabled = true;
+
+}
+
+function hideLoader() {
+
+    loader.style.display = "none";
+
+    btnIn.disabled = false;
+
+    btnOut.disabled = false;
+
+}
+
+// Form Validation
+function validateForm() {
+
+    if (empid.value.trim() === "") {
+
+        showMessage("Please enter Mobile Number.", "red");
+
+        return false;
+
+    }
+
+    if (empid.value.trim().length !== 10) {
+
+        showMessage("Mobile Number must be 10 digits.", "red");
+
+        return false;
+
+    }
+
+    if (empname.value.trim() === "") {
+
+        showMessage("Please enter Employee Name.", "red");
+
+        return false;
+
+    }
+
+    if (locationSelect.value === "") {
+
+        showMessage("Please select Duty Station.", "red");
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+/* ===========================================
+   PART 5
+   GPS + Google Apps Script Integration
+=========================================== */
+
+async function sendLocation(actionType) {
+
+    if (!validateForm()) return;
+
+    showLoader();
+
+    showMessage("Getting GPS Location...");
+
+    // Mobile Only
+    const isMobile =
+        /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+
+    if (!isMobile && location.protocol !== "file:") {
+
+        hideLoader();
+
+        showMessage(
+            "Attendance is allowed from mobile devices only.",
+            "red"
+        );
+
+        return;
+    }
+
+    // ON LEAVE
+    if (locationSelect.value === "ON LEAVE") {
+
+        const payload = {
+
+            Type: actionType,
+
+            EmployeeID: "92" + empid.value.trim(),
+
+            EmployeeName: empname.value.trim(),
+
+            Latitude: "N/A (On Leave)",
+
+            Longitude: "N/A (On Leave)",
+
+            Accuracy: "N/A",
+
+            City: "ON LEAVE",
+
+            BatteryPercentage: await getBatteryStatus(),
+
+            MobileType: getDeviceOS(),
+
+            DeviceToken: generateDeviceFingerprint()
+
+        };
+
+        return postAttendance(payload);
+
+    }
+
+    if (!navigator.geolocation) {
+
+        hideLoader();
+
+        showMessage(
+
+            "GPS is not supported on this device.",
+
+            "red"
+
+        );
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        async function(position){
+
+            const accuracy = Math.round(position.coords.accuracy);
+            checkAccuracy(accuracy);
+
+            const payload={
+
+                Type:actionType,
+
+                EmployeeID:"92"+empid.value.trim(),
+
+                EmployeeName:empname.value.trim(),
+
+                Latitude:position.coords.latitude,
+
+                Longitude:position.coords.longitude,
+
+                Accuracy:accuracy,
+
+                City:locationSelect.value,
+
+                BatteryPercentage: await getBatteryStatus(),
+
+                MobileType: getDeviceOS(),
+
+                DeviceToken:generateDeviceFingerprint()
+
+            };
+
+            postAttendance(payload);
+
+        },
+
+        function(error){
+
+            hideLoader();
+
+            switch(error.code){
+
+                case error.PERMISSION_DENIED:
+
+                    showMessage(
+
+                        "GPS Permission Denied.",
+
+                        "red"
+
+                    );
+
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+
+                    showMessage(
+
+                        "GPS Position Unavailable.",
+
+                        "red"
+
+                    );
+
+                    break;
+
+                case error.TIMEOUT:
+
+                    showMessage(
+
+                        "GPS Request Timed Out.",
+
+                        "red"
+
+                    );
+
+                    break;
+
+                default:
+
+                    showMessage(
+
+                        "Unable to get GPS Location.",
+
+                        "red"
+
+                    );
+
+            }
+
+        },
+
+        {
+
+            enableHighAccuracy:true,
+
+            timeout:20000,
+
+            maximumAge:0
+
+        }
+
+    );
+
+}
 
