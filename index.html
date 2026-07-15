@@ -1084,3 +1084,356 @@ async function sendLocation(actionType) {
 
 }
 
+/* ===========================================
+   POST TO GOOGLE APPS SCRIPT
+=========================================== */
+
+async function postAttendance(payload){
+
+    showMessage("Submitting Attendance...");
+
+    try{
+
+        const response=await fetch(script_url,{
+
+            method:"POST",
+
+            headers:{
+
+                "Content-Type":"text/plain;charset=utf-8"
+
+            },
+
+            body:JSON.stringify(payload)
+
+        });
+
+        const result=await response.json();
+
+        hideLoader();
+
+        if(result.success){
+
+            showMessage(
+
+                "✅ "+result.message,
+
+                "#0b7a3e"
+
+            );
+
+            empid.value="";
+
+            empname.value="";
+
+            locationSelect.selectedIndex=0;
+
+        }else{
+
+            showMessage(
+
+                "❌ "+result.error,
+
+                "red"
+
+            );
+
+        }
+
+    }
+
+    catch(ex){
+
+        hideLoader();
+
+        showMessage(
+
+            "Network Error : "+ex.message,
+
+            "red"
+
+        );
+
+    }
+
+}
+/* ===========================================
+   PART 6
+   Final UI, Connectivity & Helpers
+=========================================== */
+
+// -------------------------
+// Auto Focus
+// -------------------------
+
+window.addEventListener("load", () => {
+
+    empid.focus();
+
+    showMessage("Ready for Attendance");
+
+});
+
+// -------------------------
+// Internet Status
+// -------------------------
+
+window.addEventListener("offline", () => {
+
+    showMessage(
+        "No Internet Connection.",
+        "red"
+    );
+
+});
+
+window.addEventListener("online", () => {
+
+    showMessage(
+        "Internet Connected."
+    );
+
+});
+
+// -------------------------
+// GPS Accuracy Warning
+// -------------------------
+
+function checkAccuracy(acc){
+
+    if(acc>100){
+
+        showMessage(
+            "GPS Accuracy is low ("+acc+" m). Move to an open area."
+        );
+
+    }
+
+}
+
+// -------------------------
+// Auto Save Last Name
+// -------------------------
+
+empname.addEventListener("change",()=>{
+
+    localStorage.setItem(
+        "LastEmployee",
+        empname.value
+    );
+
+});
+
+window.addEventListener("load",()=>{
+
+    const lastName=
+        localStorage.getItem("LastEmployee");
+
+    if(lastName){
+
+        empname.value=lastName;
+
+    }
+
+});
+
+// -------------------------
+// Enter Key Navigation
+// -------------------------
+
+empid.addEventListener("keypress",e=>{
+
+    if(e.key==="Enter")
+        empname.focus();
+
+});
+
+empname.addEventListener("keypress",e=>{
+
+    if(e.key==="Enter")
+        locationSelect.focus();
+
+});
+
+// -------------------------
+// Double Click Protection
+// -------------------------
+
+let requestRunning=false;
+
+async function safeSend(type){
+
+    if(requestRunning){
+
+        return;
+
+    }
+
+    requestRunning=true;
+
+    try{
+
+        await sendLocation(type);
+
+    }
+
+    finally{
+
+        requestRunning=false;
+
+    }
+
+}
+
+btnIn.removeEventListener?.("click",sendLocation);
+btnOut.removeEventListener?.("click",sendLocation);
+
+btnIn.onclick=()=>safeSend("IN");
+btnOut.onclick=()=>safeSend("OUT");
+
+// -------------------------
+// Fetch Timeout Wrapper
+// -------------------------
+
+async function fetchWithTimeout(url,options={},timeout=20000){
+
+    const controller=new AbortController();
+
+    const timer=setTimeout(()=>{
+
+        controller.abort();
+
+    },timeout);
+
+    try{
+
+        const response=await fetch(url,{
+            ...options,
+            signal:controller.signal
+        });
+
+        clearTimeout(timer);
+
+        return response;
+
+    }
+
+    catch(err){
+
+        clearTimeout(timer);
+
+        throw err;
+
+    }
+
+}
+
+// -------------------------
+// Success Animation
+// -------------------------
+
+function flashSuccess(){
+
+    document.querySelector(".container")
+    .animate(
+
+        [
+
+            {transform:"scale(1)"},
+
+            {transform:"scale(1.02)"},
+
+            {transform:"scale(1)"}
+
+        ],
+
+        {
+
+            duration:400
+
+        }
+
+    );
+
+}
+
+// -------------------------
+// Error Animation
+// -------------------------
+
+function flashError(){
+
+    document.querySelector(".container")
+    .animate(
+
+        [
+
+            {transform:"translateX(-6px)"},
+
+            {transform:"translateX(6px)"},
+
+            {transform:"translateX(-6px)"},
+
+            {transform:"translateX(0)"}
+
+        ],
+
+        {
+
+            duration:300
+
+        }
+
+    );
+
+}
+
+// -------------------------
+// Update Message Function
+// -------------------------
+
+const oldShowMessage=showMessage;
+
+showMessage=function(text,color="#0b7a3e"){
+
+    oldShowMessage(text,color);
+
+    if(color==="red"){
+
+        flashError();
+
+    }else{
+
+        flashSuccess();
+
+    }
+
+};
+
+// -------------------------
+// Prevent Form Refresh
+// -------------------------
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="F5"){
+
+        e.preventDefault();
+
+    }
+
+});
+
+// -------------------------
+// End
+// -------------------------
+
+console.log(
+    "HQ NLC TPT Fleet Attendance Loaded Successfully."
+);
+
+</script>
+
+</body>
+
+</html>
