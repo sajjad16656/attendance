@@ -2,21 +2,39 @@
 <html lang="en">
 
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b7a3e">
-<meta name="description" content="HQ NLC TPT Fleet Attendance System">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#0b7a3e">
+
+<meta name="description"
+      content="HQ NLC TPT Fleet Attendance System">
+
 <title>HQ NLC TPT Fleet Attendance</title>
 
 <!-- Google Font -->
-<link rel="preconnect" href="https://googleapis.com">
-<link rel="preconnect" href="https://gstatic.com" crossorigin>
-<link href="https://googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="preconnect"
+      href="https://googleapis.com">
+
+<link rel="preconnect"
+      href="https://gstatic.com"
+      crossorigin>
+
+<link href="https://googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cloudflare.com">
+
+<link rel="stylesheet"
+href="https://cloudflare.com">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -29,86 +47,180 @@ scroll-behavior:smooth;
 }
 
 body{
-background: linear-gradient(135deg, #0b7a3e, #118847, #22b15d);
+
+background:
+
+linear-gradient(
+135deg,
+#0b7a3e,
+#118847,
+#22b15d);
+
 min-height:100vh;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 padding:25px;
+
 overflow-x:hidden;
+
 }
 
 .container{
+
 width:450px;
+
 max-width:100%;
+
 background:#ffffff;
+
 border-radius:28px;
+
 overflow:hidden;
-box-shadow: 0 25px 60px rgba(0,0,0,.25);
+
+box-shadow:
+
+0 25px 60px rgba(0,0,0,.25);
+
 animation:fadeIn .6s ease;
+
 position:relative;
+
 }
 
 @keyframes fadeIn{
-0%{ opacity:0; transform:translateY(30px); }
-100%{ opacity:1; transform:translateY(0); }
+
+0%{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
 }
 
 .header{
-background: linear-gradient(135deg, #0b7a3e, #14984d);
+
+background:
+
+linear-gradient(
+135deg,
+#0b7a3e,
+#14984d);
+
 padding:35px 25px;
+
 text-align:center;
+
 position:relative;
+
 color:#fff;
+
 }
 
 .header::after{
+
 content:"";
+
 position:absolute;
+
 left:0;
+
 right:0;
+
 bottom:-22px;
+
 height:45px;
+
 background:#fff;
+
 border-radius:100%;
+
 }
 
 .logo{
+
 width:82px;
+
 height:82px;
+
 border-radius:50%;
+
 background:#fff;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 margin:auto;
+
 font-size:40px;
+
 color:#0b7a3e;
-box-shadow: 0 12px 30px rgba(0,0,0,.25);
+
+box-shadow:
+
+0 12px 30px rgba(0,0,0,.25);
+
 position:relative;
+
 z-index:10;
+
 }
 
 .header h1{
+
 margin-top:18px;
+
 font-size:25px;
+
 font-weight:700;
+
 letter-spacing:.3px;
+
 position:relative;
+
 z-index:10;
+
 }
 
 .header p{
+
 margin-top:10px;
+
 font-size:14px;
+
 opacity:.95;
+
 position:relative;
+
 z-index:10;
+
 }
 
 .content{
+
 padding:55px 30px 30px;
+
 }
+/* ===========================
+   FORM ELEMENTS
+=========================== */
 
 label{
 display:block;
@@ -128,277 +240,1189 @@ position:relative;
 
 .input-box input,
 .input-box select{
+
 width:100%;
 height:58px;
+
 border:2px solid #e5e5e5;
+
 border-radius:15px;
+
 background:#fafafa;
+
 outline:none;
+
 padding:0 18px;
+
 font-size:15px;
+
 transition:.30s;
+
 color:#333;
+
 }
 
 .input-box input:focus,
 .input-box select:focus{
+
 border-color:#0b7a3e;
+
 background:#fff;
-box-shadow: 0 0 0 5px rgba(11,122,62,.10);
+
+box-shadow:
+0 0 0 5px rgba(11,122,62,.10);
+
 }
 
-.input-box input::placeholder{ color:#999; }
+.input-box input::placeholder{
+
+color:#999;
+
+}
+
 .prefix{
+
 position:absolute;
+
 left:18px;
+
 top:50%;
+
 transform:translateY(-50%);
+
 font-size:16px;
+
 font-weight:700;
+
 color:#0b7a3e;
+
 }
 
-#empid{ padding-left:58px; }
+#empid{
+
+padding-left:58px;
+
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
 
 .button-row{
+
 display:flex;
+
 gap:14px;
+
 margin-top:8px;
+
 }
 
 button{
+
 flex:1;
+
 height:58px;
+
 border:none;
+
 border-radius:15px;
+
 cursor:pointer;
+
 font-size:16px;
+
 font-weight:600;
+
 color:#fff;
+
 transition:.30s;
+
 }
 
 .checkin-btn{
-background:linear-gradient(135deg, #0b7a3e, #18a84f);
-box-shadow: 0 12px 25px rgba(11,122,62,.30);
+
+background:linear-gradient(
+135deg,
+#0b7a3e,
+#18a84f);
+
+box-shadow:
+0 12px 25px rgba(11,122,62,.30);
+
 }
 
 .checkout-btn{
-background:linear-gradient(135deg, #d93025, #b71c1c);
-box-shadow: 0 12px 25px rgba(217,48,37,.30);
+
+background:linear-gradient(
+135deg,
+#d93025,
+#b71c1c);
+
+box-shadow:
+0 12px 25px rgba(217,48,37,.30);
+
 }
 
-button:hover{ transform:translateY(-3px); }
-button:active{ transform:scale(.98); }
-button:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
+button:hover{
+
+transform:translateY(-3px);
+
+}
+
+button:active{
+
+transform:scale(.98);
+
+}
+
+button:disabled{
+
+opacity:.6;
+
+cursor:not-allowed;
+
+transform:none;
+
+}
+
+/* ===========================
+   STATUS BOX
+=========================== */
 
 #msg{
+
 margin-top:24px;
+
 min-height:60px;
+
 padding:16px;
 border-radius:14px;
+
 background:#eef9f2;
+
 border:1px solid #d6f0df;
+
 color:#0b7a3e;
+
 font-weight:600;
+
 font-size:14px;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 text-align:center;
+
 line-height:1.5;
+
 transition:.30s;
+
 }
+
+/* ===========================
+   LOADING
+=========================== */
 
 .loader{
+
 display:none;
+
 margin:18px auto;
+
 width:45px;
+
 height:45px;
+
 border:5px solid #ddd;
+
 border-top:5px solid #0b7a3e;
+
 border-radius:50%;
+
 animation:spin 1s linear infinite;
+
 }
 
-@keyframes spin{ 100%{ transform:rotate(360deg); } }
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
 
 .footer{
+
 padding:22px;
+
 text-align:center;
+
 font-size:12px;
+
 background:#fafafa;
+
 border-top:1px solid #eee;
+
 color:#888;
+
 }
 
-.footer strong{ color:#0b7a3e; }
+.footer strong{
+
+color:#0b7a3e;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
 
 @media(max-width:480px){
-.container{ width:100%; }
-.content{ padding:50px 20px 25px; }
-.header{ padding:28px 18px; }
-.header h1{ font-size:22px; }
-button{ height:55px; font-size:15px; }
-}
-</style>
-</head>
 
+.container{
+
+width:100%;
+
+}
+
+.content{
+
+padding:50px 20px 25px;
+
+}
+
+.header{
+
+padding:28px 18px;
+
+}
+
+.header h1{
+
+font-size:22px;
+
+}
+
+button{
+
+height:55px;
+
+font-size:15px;
+
+}
+
+}
+
+</style>
 <body>
 
 <div class="container">
-    <!-- HEADER -->
+
+    <!-- ===========================
+         HEADER
+    ============================ -->
+
     <div class="header">
+
         <div class="logo">
             <i class="fa-solid fa-location-dot"></i>
         </div>
+
         <h1>HQ NLC TPT FLEET GWA</h1>
+
         <p>Employee Attendance & GPS Tracking System</p>
+
     </div>
 
-    <!-- CONTENT -->
+    <!-- ===========================
+         CONTENT
+    ============================ -->
+
     <div class="content">
-        <!-- Mobile Number Input -->
+
+        <!-- Mobile -->
+
         <div class="input-group">
-            <label>Employee Mobile Number</label>
+
+            <label>
+                Employee Mobile Number
+            </label>
+
             <div class="input-box">
-                <span class="prefix">+92</span>
-                <input type="tel" id="empid" maxlength="10" placeholder="3001234567" autocomplete="off">
+
+                <span class="prefix">
+                    +92
+                </span>
+
+                <input
+                    type="tel"
+                    id="empid"
+                    maxlength="10"
+                    placeholder="3001234567"
+                    autocomplete="off">
+
             </div>
+
         </div>
 
-        <!-- Employee Name Input -->
+        <!-- Employee Name -->
+
         <div class="input-group">
-            <label>Employee Name</label>
+
+            <label>
+                Employee Name
+            </label>
+
             <div class="input-box">
-                <input type="text" id="empname" placeholder="Enter Employee Name" autocomplete="off">
+
+                <input
+                    type="text"
+                    id="empname"
+                    placeholder="Enter Employee Name"
+                    autocomplete="off">
+
             </div>
+
         </div>
 
-        <!-- Duty Station Selection Dropdown -->
+        <!-- Duty Station -->
+
         <div class="input-group">
-            <label>Duty Station</label>
+
+            <label>
+                Duty Station
+            </label>
+
             <div class="input-box">
+
                 <select id="locationSelect">
-                    <option value="">Select Duty Station</option>
+
+                    <option value="">
+                        Select Duty Station
+                    </option>
+
                     <option value="CCI Lhr">CCI Lhr</option>
+
                     <option value="CCI Fsd">CCI Fsd</option>
+
                     <option value="CCI Hattar">CCI Hattar</option>
+
                     <option value="CCI RYK">CCI RYK</option>
+
                     <option value="GB-9">GB-9</option>
+
                     <option value="POF WAH">POF Wah</option>
+
                     <option value="FCC DK">FCC DK</option>
+
                     <option value="FFC Hazara">FFC Hazara</option>
+
                     <option value="Proj Gwa">Proj Gwa</option>
-                    <option value="ON LEAVE">🌴 ON LEAVE</option>
+
+                    <option value="ON LEAVE">
+                        🌴 ON LEAVE
+                    </option>
+
                 </select>
+
             </div>
+
         </div>
 
-        <!-- Submission Action Buttons -->
+        <!-- Buttons -->
+
         <div class="button-row">
-            <button id="btnIn" class="checkin-btn">
-                <i class="fa-solid fa-right-to-bracket"></i> Check In
+
+            <button
+                id="btnIn"
+                class="checkin-btn">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Check In</button>
+
+            <button
+                id="btnOut"
+                class="checkout-btn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Check Out
+
             </button>
-            <button id="btnOut" class="checkout-btn">
-                <i class="fa-solid fa-right-from-bracket"></i> Check Out
-            </button>
+
         </div>
 
-        <!-- CSS Animated Spinner Loader -->
-        <div class="loader" id="loader"></div>
+        <!-- Loader -->
 
-        <!-- Diagnostics Dynamic Status Messaging Box -->
-        <div id="msg">Ready for Attendance...</div>
+        <div
+            class="loader"
+            id="loader">
+        </div>
+
+        <!-- Status -->
+
+        <div id="msg">
+
+            Ready for Attendance...
+
+        </div>
+
     </div>
 
-    <!-- FOOTER CREDITS -->
+    <!-- ===========================
+         FOOTER
+    ============================ -->
+
     <div class="footer">
-        Developed by <strong>Syed Muhammad Sajjad Ali</strong>
+
+        Developed by
+
+        <strong>
+
+            ICT GWA |
+            Syed Muhammad Sajjad Ali
+
+        </strong>
+
     </div>
+
 </div>
 
-<!-- ===================================================
-     JAVASCRIPT LOGIC BLOCK WITH DEVICE & BATTERY EXTRACTOR
-     =================================================== -->
+<!-- ===========================
+     JAVASCRIPT
+=========================== -->
+
 <script>
-// IMPORTANT: Paste your active Google Apps Script Web App Deployment URL here
-const WEB_APP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 
-// 1. Device Hardware Context Architecture Parser
-function getMobileType() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    if (/android/i.test(userAgent)) {
-        return "Android Mobile";
+const script_url =
+"https://google.com";
+
+const loader =
+document.getElementById("loader");
+
+const msg =
+document.getElementById("msg");
+
+const btnIn =
+document.getElementById("btnIn");
+
+const btnOut =
+document.getElementById("btnOut");
+
+const empid =
+document.getElementById("empid");
+
+const empname =
+document.getElementById("empname");
+
+const locationSelect =
+document.getElementById("locationSelect");
+/* ===========================================
+   PART 4
+   Utility Functions & Event Handlers
+=========================================== */
+
+// Mobile Number Validation
+function validateMobileInput(input) {
+
+    input.value = input.value.replace(/[^0-9]/g, "");
+
+    if (input.value.startsWith("0")) {
+        input.value = input.value.substring(1);
     }
-    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        return "Apple iOS";
+
+    if (input.value.length > 10) {
+        input.value = input.value.substring(0, 10);
     }
-    return "Web/Desktop Browser";
+
 }
 
-// 2. Battery Percentage API Diagnostics Engine
+// Attach Validation
+empid.addEventListener("input", function () {
+    validateMobileInput(this);
+});
+
+// Device Fingerprint
+function generateDeviceFingerprint() {
+
+    const info = [
+
+        navigator.userAgent,
+
+        navigator.language,
+
+        screen.width,
+
+        screen.height,
+
+        screen.colorDepth,
+
+        Intl.DateTimeFormat().resolvedOptions().timeZone,
+
+        navigator.hardwareConcurrency || "",
+
+        navigator.platform
+
+    ].join("|");
+
+    let hash = 0;
+
+    for (let i = 0; i < info.length; i++) {
+
+        hash = ((hash << 5) - hash) + info.charCodeAt(i);
+
+        hash |= 0;
+
+    }
+
+    return "DEV-" + Math.abs(hash);
+
+// Battery Status
 async function getBatteryStatus() {
-    if (navigator.getBattery) {
-        try {
-            const battery = await navigator.getBattery();
-            let percentage = Math.round(battery.level * 100);
-            if (battery.charging) {
-                return percentage + "% (Chg)";
-            }
-            return percentage + "%";
-        } catch (e) {
-            return "Not Supported";
-        }
+
+    if (!navigator.getBattery) {
+
+        return "Not Supported";
+
     }
-    return "Not Supported";
+
+    try {
+
+        const battery = await navigator.getBattery();
+
+        return Math.round(battery.level * 100) + "%" +
+            (battery.charging ? " (Charging)" : "");
+
+    }
+
+    catch (e) {
+
+        return "Unknown";
+
+    }
+
 }
 
-// 3. Form Validation, Diagnostics Fetching & Geolocation Router
-async function processAttendance(type) {
-    const empIdInput = document.getElementById("empid").value.trim();
-    const empName = document.getElementById("empname").value.trim();
-    const city = document.getElementById("locationSelect").value;
-    const msgBox = document.getElementById("msg");
-    const loader = document.getElementById("loader");
+// Device OS
+function getDeviceOS() {
 
-    // UI Input Validation Guards
-    if (!empIdInput || empIdInput.length !== 10 || isNaN(empIdInput)) {
-        msgBox.innerHTML = "⚠️ Please enter a valid 10-digit mobile number.";
-        msgBox.style.color = "#d93025";
-        return;
-    }
-    if (!empName) {
-        msgBox.innerHTML = "⚠️ Please enter the employee name.";
-        msgBox.style.color = "#d93025";
-        return;
-    }
-    if (!city) {
-        msgBox.innerHTML = "⚠️ Please select a duty station.";
-        msgBox.style.color = "#d93025";
-        return;
-    }
+    const ua = navigator.userAgent;
 
-    const employeeID = "+92" + empIdInput;
-    msgBox.innerHTML = "Fetching location and device diagnostics...";
-    msgBox.style.color = "#0b7a3e";
+    if (/Android/i.test(ua))
+        return "Android";
+
+    if (/iPhone|iPad|iPod/i.test(ua))
+        return "iPhone";
+
+    return "Unknown Device";
+
+}
+
+// Message Box
+function showMessage(text, color = "#0b7a3e") {
+
+    msg.style.color = color;
+
+    msg.innerHTML = text;
+
+}
+
+// Loading
+function showLoader() {
+
     loader.style.display = "block";
 
-    // Request Live System Diagnostics
-    const batteryPercentage = await getBatteryStatus();
-    const mobileType = getMobileType();
-    const deviceToken = "NLC-FLEET-" + employeeID; 
+    btnIn.disabled = true;
 
-    // Exception Bypass Route for On Leave Logs vs GPS Checks
-    if (city === "ON LEAVE") {
-        submitData(type, employeeID, empName, city, "0", "0", deviceToken, batteryPercentage, mobileType);
-    } else {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    submitData(
-                        type, employeeID, empName, city, 
-                        position.coords.latitude, position.coords.longitude, 
-                        deviceToken, batteryPercentage, mobileType
+    btnOut.disabled = true;
+
+}
+
+function hideLoader() {
+
+    loader.style.display = "none";
+
+    btnIn.disabled = false;
+
+    btnOut.disabled = false;
+
+}
+
+// Form Validation
+function validateForm() {
+
+    if (empid.value.trim() === "") {
+
+        showMessage("Please enter Mobile Number.", "red");
+
+        return false;
+
+    }
+
+    if (empid.value.trim().length !== 10) {
+
+        showMessage("Mobile Number must be 10 digits.", "red");
+
+        return false;
+
+    }
+
+    if (empname.value.trim() === "") {
+
+        showMessage("Please enter Employee Name.", "red");
+
+        return false;
+
+    }
+
+    if (locationSelect.value === "") {
+
+        showMessage("Please select Duty Station.", "red");
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+/* ===========================================
+   PART 5
+   GPS + Google Apps Script Integration
+=========================================== */
+
+async function sendLocation(actionType) {
+
+    if (!validateForm()) return;
+
+    showLoader();
+
+    showMessage("Getting GPS Location...");
+     // Mobile Only
+    const isMobile =
+        /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+
+    if (!isMobile && location.protocol !== "file:") {
+
+        hideLoader();
+
+        showMessage(
+            "Attendance is allowed from mobile devices only.",
+            "red"
+        );
+
+        return;
+    }
+
+    // ON LEAVE
+    if (locationSelect.value === "ON LEAVE") {
+
+        const payload = {
+
+            Type: actionType,
+
+            EmployeeID: "92" + empid.value.trim(),
+
+            EmployeeName: empname.value.trim(),
+
+            Latitude: "N/A (On Leave)",
+
+            Longitude: "N/A (On Leave)",
+
+            Accuracy: "N/A",
+
+            City: "ON LEAVE",
+
+            BatteryPercentage: await getBatteryStatus(),
+
+            MobileType: getDeviceOS(),
+
+            DeviceToken: generateDeviceFingerprint()
+
+        };
+
+        return postAttendance(payload);
+
+    }
+
+    if (!navigator.geolocation) {
+
+        hideLoader();
+
+        showMessage(
+
+            "GPS is not supported on this device.",
+
+            "red"
+
+        );
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        async function(position){
+
+            const payload={
+
+                Type:actionType,
+
+                EmployeeID:"92"+empid.value.trim(),
+
+                EmployeeName:empname.value.trim(),
+
+                Latitude:position.coords.latitude,
+
+                Longitude:position.coords.longitude,
+
+                Accuracy:Math.round(position.coords.accuracy),
+
+                City:locationSelect.value,
+
+                BatteryPercentage: await getBatteryStatus(),
+
+                MobileType: getDeviceOS(),
+
+                DeviceToken:generateDeviceFingerprint()
+
+            };
+
+            postAttendance(payload);
+
+        },
+
+        function(error){
+
+            hideLoader();
+
+            switch(error.code){
+
+                case error.PERMISSION_DENIED:
+
+                    showMessage(
+
+                        "GPS Permission Denied.",
+
+                        "red"
+
                     );
-                },
+
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+
+                    showMessage(
+
+                        "GPS Position Unavailable.",
+
+                        "red"
+
+                    );
+
+                    break;
+
+                case error.TIMEOUT:
+
+                    showMessage(
+
+                        "GPS Request Timed Out.",
+
+                        "red"
+
+                    );
+
+                    break;
+
+                default:
+
+                    showMessage(
+
+                        "Unable to get GPS Location.",
+
+                        "red"
+
+                    );
+
+            }
+
+        },
+
+        {
+
+            enableHighAccuracy:true,
+
+            timeout:20000,
+
+            maximumAge:0
+
+        }
+
+    );
+
+}
+
+/* ===========================================
+   POST TO GOOGLE APPS SCRIPT
+=========================================== */
+
+async function postAttendance(payload){
+
+    showMessage("Submitting Attendance...");
+
+    try{
+
+        const response=await fetchWithTimeout(script_url,{
+
+            method:"POST",
+
+            headers:{
+
+                "Content-Type":"text/plain;charset=utf-8"
+
+            },
+
+            body:JSON.stringify(payload)
+
+        }, 20000);
+
+        const result=await response.json();
+
+        hideLoader();
+
+        if(result.success){
+
+            showMessage(
+
+                "✅ "+result.message,
+
+                "#0b7a3e"
+
+            );
+
+            empid.value="";
+
+            locationSelect.selectedIndex=0;
+
+        }else{
+
+            showMessage(
+
+                "❌ "+result.error,
+
+                "red"
+
+            );
+
+        }
+
+    }
+
+    catch(ex){
+
+        hideLoader();
+
+        showMessage(
+
+            "Network Error : "+ex.message,
+
+            "red"
+
+        );
+
+    }
+
+}
+    /* ===========================================
+   PART 6
+   Final UI, Connectivity & Helpers
+=========================================== */
+
+// -------------------------
+// Auto Focus
+// -------------------------
+
+window.addEventListener("load", () => {
+
+    empid.focus();
+
+    showMessage("Ready for Attendance");
+
+});
+
+// -------------------------
+// Internet Status
+// -------------------------
+
+window.addEventListener("offline", () => {
+
+    showMessage(
+        "No Internet Connection.",
+        "red"
+    );
+
+});
+
+window.addEventListener("online", () => {
+
+    showMessage(
+        "Internet Connected."
+    );
+
+});
+
+// -------------------------
+// GPS Accuracy Warning
+// -------------------------
+
+function checkAccuracy(acc){
+
+    if(acc>100){
+
+        showMessage(
+            "GPS Accuracy is low ("+acc+" m). Move to an open area."
+        );
+
+    }
+
+}
+
+// -------------------------
+// Auto Save Last Name
+// -------------------------
+
+empname.addEventListener("change",()=>{
+
+    localStorage.setItem(
+        "LastEmployee",
+        empname.value
+    );
+
+});
+
+window.addEventListener("load",()=>{
+
+    const lastName=
+        localStorage.getItem("LastEmployee");
+
+    if(lastName){
+
+        empname.value=lastName;
+
+    }
+
+});
+
+// -------------------------
+// Enter Key Navigation
+// -------------------------
+
+empid.addEventListener("keypress",e=>{
+
+    if(e.key==="Enter")
+        empname.focus();
+
+});
+
+empname.addEventListener("keypress",e=>{
+
+    if(e.key==="Enter")
+        locationSelect.focus();
+
+});
+
+// -------------------------
+// Double Click Protection
+// -------------------------
+
+let requestRunning=false;
+
+async function safeSend(type){
+
+    if(requestRunning){
+
+        return;
+
+    }
+
+    requestRunning=true;
+
+    try{
+
+        await sendLocation(type);
+
+    }
+
+    finally{
+
+        requestRunning=false;
+
+    }
+
+}
+
+btnIn.removeEventListener?.("click",sendLocation);
+btnOut.removeEventListener?.("click",sendLocation);
+
+btnIn.onclick=()=>safeSend("IN");
+btnOut.onclick=()=>safeSend("OUT");
+
+// -------------------------
+// Fetch Timeout Wrapper
+// -------------------------
+
+async function fetchWithTimeout(url,options={},timeout=20000){
+
+    const controller=new AbortController();
+
+    const timer=setTimeout(()=>{
+
+        controller.abort();
+
+    },timeout);
+
+    try{
+
+        const response=await fetch(url,{
+            ...options,
+            signal:controller.signal
+        });
+
+        clearTimeout(timer);
+
+        return response;
+
+    }
+
+    catch(err){
+
+        clearTimeout(timer);
+
+        throw err;
+
+    }
+
+}
+    // -------------------------
+// Success Animation
+// -------------------------
+
+function flashSuccess(){
+
+    document.querySelector(".container")
+    .animate(
+
+        [
+
+            {transform:"scale(1)"},
+
+            {transform:"scale(1.02)"},
+
+            {transform:"scale(1)"}
+
+        ],
+
+        {
+
+            duration:400
+
+        }
+
+    );
+
+}
+
+// -------------------------
+// Error Animation
+// -------------------------
+
+function flashError(){
+
+    document.querySelector(".container")
+    .animate(
+
+        [
+
+            {transform:"translateX(-6px)"},
+
+            {transform:"translateX(6px)"},
+
+            {transform:"translateX(-6px)"},
+
+            {transform:"translateX(0)"}
+
+        ],
+
+        {
+
+            duration:300
+
+        }
+
+    );
+
+}
+
+// -------------------------
+// Update Message Function
+// -------------------------
+
+const oldShowMessage=showMessage;
+
+showMessage=function(text,color="#0b7a3e"){
+
+    oldShowMessage(text,color);
+
+    if(color==="red"){
+
+        flashError();
+
+    }else{
+
+        flashSuccess();
+
+    }
+
+};
+
+// -------------------------
+// Prevent Form Refresh
+// -------------------------
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="F5"){
+
+        e.preventDefault();
+
+    }
+
+});
+
+// -------------------------
+// End
+// -------------------------
+
+console.log(
+    "HQ NLC TPT Fleet Attendance Loaded Successfully."
+);
+
+</script>
+
+</body>
+
+</html>
