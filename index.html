@@ -18,185 +18,329 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
+
 background:linear-gradient(135deg,#0b7a3e,#179b57,#29b96c);
+
 min-height:100vh;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
 padding:25px;
+
 }
 
 .container{
+
 width:430px;
+
 max-width:100%;
+
 background:white;
+
 border-radius:25px;
+
 overflow:hidden;
-box-shadow:0 20px 60px rgba(0,0,0,.25);
+
+box-shadow:
+
+0 20px 60px rgba(0,0,0,.25);
+
 animation:fade .5s;
+
 }
 
 @keyframes fade{
+
 from{
+
 opacity:0;
+
 transform:translateY(25px);
+
 }
+
 to{
+
 opacity:1;
+
 transform:none;
+
 }
+
 }
 
 .header{
+
 background:linear-gradient(135deg,#0b7a3e,#0ea64b);
+
 padding:35px 20px;
+
 text-align:center;
+
 color:white;
+
 }
 
 .header .icon{
+
 width:75px;
+
 height:75px;
+
 background:white;
+
 border-radius:50%;
+
 display:flex;
+
 align-items:center;
+
 justify-content:center;
+
 margin:auto;
+
 font-size:36px;
+
 color:#0b7a3e;
+
 margin-bottom:18px;
+
 box-shadow:0 10px 20px rgba(0,0,0,.20);
+
 }
 
 .header h1{
+
 font-size:25px;
+
 font-weight:700;
+
 }
 
 .header p{
+
 margin-top:8px;
+
 font-size:14px;
+
 opacity:.95;
+
 }
 
 .content{
+
 padding:30px;
+
 }
 
 label{
+
 display:block;
+
 margin-bottom:8px;
+
 font-weight:600;
+
 color:#444;
+
 font-size:14px;
+
 }
 
 .input-box{
+
 position:relative;
+
 margin-bottom:22px;
+
 }
 
 .input-box input,
+
 .input-box select{
+
 width:100%;
+
 height:55px;
+
 border:2px solid #e5e5e5;
+
 border-radius:14px;
+
 padding:0 18px;
+
 font-size:15px;
+
 outline:none;
+
 transition:.3s;
+
 background:#fafafa;
+
 }
 
 .input-box input:focus,
+
 .input-box select:focus{
+
 border-color:#0b7a3e;
+
 background:white;
+
 box-shadow:0 0 0 5px rgba(11,122,62,.10);
+
 }
 
 .prefix{
+
 position:absolute;
+
 left:18px;
+
 top:50%;
+
 transform:translateY(-50%);
+
 font-weight:700;
+
 color:#0b7a3e;
+
 font-size:16px;
+
 }
 
 #empid{
+
 padding-left:55px;
+
 }
 
 button{
+
 width:100%;
+
 height:58px;
+
 border:none;
+
 border-radius:15px;
+
 background:linear-gradient(135deg,#0b7a3e,#16a34a);
+
 color:white;
+
 font-size:18px;
+
 font-weight:600;
+
 cursor:pointer;
+
 transition:.3s;
-box-shadow:0 12px 25px rgba(11,122,62,.30);
+
+box-shadow:
+
+0 12px 25px rgba(11,122,62,.30);
+
 }
 
 button:hover{
+
 transform:translateY(-3px);
-box-shadow:0 18px 30px rgba(11,122,62,.40);
+
+box-shadow:
+
+0 18px 30px rgba(11,122,62,.40);
+
 }
 
 button:active{
+
 transform:scale(.98);
+
 }
 
 #msg{
+
 margin-top:22px;
+
 padding:15px;
+
 border-radius:12px;
+
 background:#eef9f2;
+
 color:#0b7a3e;
+
 text-align:center;
+
 font-weight:600;
+
 font-size:14px;
+
 border:1px solid #d6f0df;
+
 min-height:54px;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
-word-wrap:break-word;
+
 }
 
 .footer{
+
 padding:20px;
+
 text-align:center;
+
 font-size:12px;
+
 color:#999;
+
 border-top:1px solid #eee;
+
 background:#fafafa;
+
 }
 
 .footer strong{
+
 color:#0b7a3e;
+
 }
 
 @media(max-width:450px){
+
 .content{
+
 padding:22px;
+
 }
+
 .header{
+
 padding:28px 15px;
+
 }
+
 .header h1{
+
 font-size:22px;
+
 }
+
 button{
+
 height:55px;
+
 }
+
 }
 
 </style>
@@ -208,16 +352,27 @@ height:55px;
 <div class="container">
 
 <div class="header">
-<div class="icon">📍</div>
+
+<div class="icon">
+
+📍
+
+</div>
+
 <h1>HQ NLC TPT Fleet Gwa</h1>
+
 <p>Employee Attendance & GPS Tracking System</p>
+
 </div>
 
 <div class="content">
 
 <label>Employee Mobile Number</label>
+
 <div class="input-box">
+
 <span class="prefix">92</span>
+
 <input
 type="tel"
 id="empid"
@@ -225,48 +380,73 @@ placeholder="3001234567"
 maxlength="10"
 oninput="validateMobileInput(this)"
 >
+
 </div>
 
 <label>Employee Name</label>
+
 <div class="input-box">
+
 <input
 type="text"
 id="empname"
 placeholder="Enter employee name">
+
 </div>
 
 <label>Duty Station</label>
+
 <div class="input-box">
+
 <select id="locationSelect">
+
 <option value="CCI Lhr">CCI Lhr</option>
+
 <option value="CCI Fsd">CCI Fsd</option>
+
 <option value="CCI Hattar">CCI Hattar</option>
+
 <option value="CCI RYK">CCI RYK</option>
+
 <option value="GB-9">GB-9</option>
+
 <option value="POF WAH">POF Wah</option>
+
 <option value="FCC DK">FCC DK</option>
+
 <option value="FFC Hazara">FFC Hazara</option>
-<option value="ON LEAVE">🌴 ON LEAVE</option>
+
 </select>
+
 </div>
 
 <button onclick="sendlocation()">
-📍 Mark Attendance / Leave
+
+📍 Mark Attendance
+
 </button>
 
 <div id="msg">
+
 Ready for attendance...
+
 </div>
 
 </div>
 
 <div class="footer">
+
 Developed by
-<strong>ICT GWA | Syed Muhammad Sajjad Ali</strong>
-</div>
+
+<strong>
+
+ICT GWA | Syed Muhammad Sajjad Ali
+
+</strong>
 
 </div>
 
+</div>
 <script>
 const script_url = "https://script.google.com/macros/s/AKfycbyx1Qa9Lj7plFkbG8mey4ZzP0H_69xkqp3-Z29bqgnBDK9WI-cYMw-zfTZCug-XBSpkYA/exec";
 
@@ -313,48 +493,15 @@ async function getBatteryStatus() {
 
 function getDeviceOS() {
     const ua = navigator.userAgent;
+
     if (/Android/i.test(ua)) return "Android Mobile";
     if (/iPhone|iPad/i.test(ua)) return "Apple iOS";
+
     return "Mobile Phone";
 }
 
-// Global submit wrapper to avoid duplicate code
-function submitToSheet(payload) {
-    const msgDiv = document.getElementById("msg");
-    msgDiv.innerText = "Verifying parameters against sheet database...";
-
-    fetch(script_url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.success){
-            msgDiv.style.color = "#0b7a3e";
-            msgDiv.style.background = "#eef9f2";
-            msgDiv.style.borderColor = "#d6f0df";
-            msgDiv.innerText = data.message;
-            document.getElementById("empid").value = "";
-            document.getElementById("empname").value = "";
-        } else {
-            msgDiv.style.color = "red";
-            msgDiv.style.background = "#fff5f5";
-            msgDiv.style.borderColor = "#fed7d7";
-            msgDiv.innerText = data.error;
-        }
-    })
-    .catch(err => {
-        msgDiv.style.color = "red";
-        msgDiv.style.background = "#fff5f5";
-        msgDiv.style.borderColor = "#fed7d7";
-        msgDiv.innerText = "Network Error: Server response failure.";
-    });
-}
-
 function sendlocation() {
+
     const empid = document.getElementById("empid").value.trim();
     const empname = document.getElementById("empname").value.trim();
     const selectedLoc = document.getElementById("locationSelect").value;
@@ -364,114 +511,145 @@ function sendlocation() {
 
     if (!isMobile) {
         msgDiv.style.color = "red";
-        msgDiv.style.background = "#fff5f5";
-        msgDiv.style.borderColor = "#fed7d7";
         msgDiv.innerText = "Security Error: Check-in sirf Mobile phone se allow hai! Desktop/PC blocked.";
         return;
     }
 
     if (!empid || !empname) {
         msgDiv.style.color = "red";
-        msgDiv.style.background = "#fff5f5";
-        msgDiv.style.borderColor = "#fed7d7";
         msgDiv.innerText = "Error: Please fill out all fields.";
         return;
     }
 
     if (empid.length !== 10) {
         msgDiv.style.color = "red";
-        msgDiv.style.background = "#fff5f5";
-        msgDiv.style.borderColor = "#fed7d7";
         msgDiv.innerText = "Error: Mobile number ghalat hai! Shuru ka 0 mita kar poore 10 digits likhein.";
         return;
     }
 
-    const formattedMobile = "92" + empid;
-
-    // 🌴 ON LEAVE BYPASS LOGIC
-    if (selectedLoc === "ON LEAVE") {
-        msgDiv.style.color = "#0b7a3e";
-        msgDiv.style.background = "#eef9f2";
-        msgDiv.style.borderColor = "#d6f0df";
-        msgDiv.innerText = "Processing leave application status...";
-        
-        getBatteryStatus().then(battery => {
-            const payload = {
-                EmployeeID: formattedMobile,
-                EmployeeName: empname,
-                Latitude: "N/A (On Leave)",
-                Longitude: "N/A (On Leave)",
-                Accuracy: "N/A",
-                City: "ON LEAVE",
-                Battery: battery,
-                Device: getDeviceOS(),
-                DeviceToken: generateDeviceFingerprint()
-            };
-            submitToSheet(payload);
-        });
-        return; // Exits function here, skipping GPS execution
-    }
-
-    // Standard GPS Tracking workflow
     msgDiv.style.color = "#0b7a3e";
-    msgDiv.style.background = "#eef9f2";
-    msgDiv.style.borderColor = "#d6f0df";
     msgDiv.innerText = "Requesting secure mobile GPS lock...";
 
     navigator.geolocation.getCurrentPosition(
+
         async(position)=>{
+
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
+
             const accuracy = position.coords.accuracy
                 ? Math.round(position.coords.accuracy) + "m"
                 : "Unknown";
 
             const battery = await getBatteryStatus();
+
             const deviceToken = generateDeviceFingerprint();
 
-            if(position.coords.accuracy > 150){
-                msgDiv.style.color = "red";
-                msgDiv.style.background = "#fff5f5";
-                msgDiv.style.borderColor = "#fed7d7";
-                msgDiv.innerText = "GPS signal weak! Kisi khuli jagah par ja kar dubara try karein.";
+            const formattedMobile = "92" + empid;
+
+            if(position.coords.accuracy >150){
+
+                msgDiv.style.color="red";
+
+                msgDiv.innerText="GPS signal weak! Kisi khuli jagah par ja kar dubara try karein.";
+
                 return;
+
             }
 
-            const payload = {
-                EmployeeID: formattedMobile,
-                EmployeeName: empname,
-                Latitude: lat,
-                Longitude: lon,
- msgDiv.innerText = data.message;
-                    document.getElementById("empid").value = "";
-                    document.getElementById("empname").value = "";
-                } else {
-                    msgDiv.style.color = "red";
-                    msgDiv.style.background = "#fff5f5";
-                    msgDiv.style.borderColor = "#fed7d7";
-                    msgDiv.innerText = data.error;
-                }
+            const payload={
+
+                EmployeeID:formattedMobile,
+
+                EmployeeName:empname,
+
+                Latitude:lat,
+
+                Longitude:lon,
+
+                Accuracy:accuracy,
+
+                City:selectedLoc,
+
+                Battery:battery,
+
+                Device:getDeviceOS(),
+
+                DeviceToken:deviceToken
+
+            };
+
+            msgDiv.innerText="Verifying parameters against sheet database...";
+
+            fetch(script_url,{
+
+                method:"POST",
+
+                headers:{
+
+                    "Content-Type":"text/plain;charset=utf-8"
+
+                },
+
+                body:JSON.stringify(payload)
+
             })
-            .catch(err => {
-                msgDiv.style.color = "red";
-                msgDiv.style.background = "#fff5f5";
-                msgDiv.style.borderColor = "#fed7d7";
-                msgDiv.innerText = "Network Error: Server response failure.";
+
+            .then(res=>res.json())
+
+            .then(data=>{
+
+                if(data.success){
+
+                    msgDiv.style.color="#0b7a3e";
+
+                    msgDiv.innerText=data.message;
+
+                    document.getElementById("empid").value="";
+
+                    document.getElementById("empname").value="";
+
+                }else{
+
+                    msgDiv.style.color="red";
+
+                    msgDiv.innerText=data.error;
+
+                }
+
+            })
+
+            .catch(err=>{
+
+                msgDiv.style.color="red";
+
+                msgDiv.innerText="Network Error: Server response failure.";
+
             });
+
         },
-        function(error) {
-            msgDiv.style.color = "red";
-            msgDiv.style.background = "#fff5f5";
-            msgDiv.style.borderColor = "#fed7d7";
-            msgDiv.innerText = "GPS Error: Please enable location services on your mobile.";
+
+        function(error){
+
+            msgDiv.style.color="red";
+
+            msgDiv.innerText="GPS Error: Please enable location services on your mobile.";
+
         },
+
         {
-            enableHighAccuracy: true,
-            timeout: 12000
+
+            enableHighAccuracy:true,
+
+            timeout:12000
+
         }
+
     );
+
 }
 </script>
 
 </body>
+
 </html>
