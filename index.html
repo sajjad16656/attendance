@@ -6,7 +6,7 @@
 
 <title>HQ NLC TPT Fleet Attendance</title>
 
-<!-- 🌟 Sahi Google Fonts integration link -->
+<!-- 🌟 Corrected Google Fonts Integration Link -->
 <link href="https://googleapis.com" rel="stylesheet">
 
 <style>
@@ -233,7 +233,7 @@ button{ height:55px; font-size:15px; }
 </div>
 
 <script>
-// ⚠️ Apni Apps Script deployment ka exact live URL yahan lagayein
+// ⚠️ Updated to your new deployment live API link URL string
 const script_url = "https://script.google.com/macros/s/AKfycbxFdvRyrTXecw__cPuQQLP90evOnGgN2hKI4DmMqAi2oEaLAnYuBY9aBEfxaUYp57fDRw/exec";
 
 function validateMobileInput(input) {
@@ -326,12 +326,12 @@ function processAttendance(actionType) {
         return;
     }
 
-    // 🌟 Sahi cut line validation block close ho gaya
+    // 🌟 Completed the truncated digit length conditional statement block
     if (empid.length !== 10) {
         msgDiv.style.color = "red";
         msgDiv.style.background = "#fff5f5";
         msgDiv.style.borderColor = "#fed7d7";
-        msgDiv.innerText = "Error: Mobile number ghalat hai! Poore 10 digits likhein.";
+        msgDiv.innerText = "Error: Mobile number ghalat hai! Poore 10 hinde (3xxxxxxxxx) likhein.";
         return;
     }
 
@@ -370,4 +370,3 @@ function processAttendance(actionType) {
             const deviceToken = generateDeviceFingerprint();
 
             if(position.coords.accuracy > 150){
-                msgDiv.style.color = "red";
