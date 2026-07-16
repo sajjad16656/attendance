@@ -708,7 +708,7 @@ font-size:15px;
 <script>
 
 const script_url =
-"https://script.google.com/macros/s/AKfycbxnU9bYf1L08ElIAZ8cc8q1OkPYiJedXPCsLkWSRn8AyhKzUpicsPzSx9BZjV7cvvUpRg/exec";
+"https://script.google.com/macros/s/AKfycbz438UhZUkpn-u6Y5z1Afjqhhkdt98UbOEpvsB-QGooaw96tcs8FK8n7VhfLCCvp50j1A/exec";
 
 const loader =
 document.getElementById("loader");
@@ -757,9 +757,11 @@ empid.addEventListener("input", function () {
 });
 
 // Device Fingerprint
+// Device Fingerprint with Mobile Number Binding
 function generateDeviceFingerprint() {
 
     const info = [
+        empid.value.trim(), // ٹھیک کیا گیا: موبائل نمبر کو ٹوکن کا حصہ بنا دیا تا کہ یہ ہمیشہ منفرد رہے
 
         navigator.userAgent,
 
@@ -788,7 +790,9 @@ function generateDeviceFingerprint() {
         hash |= 0;
 
     }
-    return "DEV-" + Math.abs(hash);
+
+    // اب ٹوکن ہر ملازم کے نمبر کے حساب سے بالکل الگ بنے گا
+    return "DEV-" + empid.value.trim() + "-" + Math.abs(hash);
 
 }
 
