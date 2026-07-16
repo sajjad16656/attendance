@@ -955,8 +955,8 @@ async function sendLocation(actionType) {
 
             MobileType: getDeviceOS(),
 
-            DeviceToken: generateDeviceFingerprint()
-
+          /*  DeviceToken: generateDeviceFingerprint() */
+DeviceToken: generateDeviceFingerprint() + "-" + empid.value.trim(),
         };
 
         return postAttendance(payload);
