@@ -1,35 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
 <meta charset="utf-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color"
-      content="#0b7a3e">
-
-<meta name="description"
-      content="HQ NLC TPT Fleet Attendance System">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b7a3e">
+<meta name="description" content="HQ NLC TPT Fleet Attendance System">
 
 <title>HQ NLC TPT Fleet Attendance</title>
 
 <!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Font Awesome -->
-
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -48,14 +35,6 @@ scroll-behavior:smooth;
 
 body{
 
-background:
-
-linear-gradient(
-135deg,
-#0b7a3e,
-#118847,
-#22b15d);
-
 min-height:100vh;
 
 display:flex;
@@ -64,29 +43,100 @@ justify-content:center;
 
 align-items:center;
 
-padding:25px;
+padding:30px;
 
 overflow-x:hidden;
 
+background:
+linear-gradient(-45deg,
+#046A38,
+#0B7A3E,
+#0E8B49,
+#1BB45D);
+
+background-size:400% 400%;
+
+animation:bgMove 12s ease infinite;
+
+position:relative;
+
 }
+
+/* Floating Background */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:520px;
+height:520px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+top:-180px;
+left:-150px;
+
+filter:blur(40px);
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:420px;
+height:420px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+right:-120px;
+bottom:-120px;
+
+filter:blur(35px);
+
+}
+
+@keyframes bgMove{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
+}
+
+/* Main Card */
 
 .container{
 
-width:450px;
+width:470px;
 
 max-width:100%;
 
-background:#ffffff;
+background:rgba(255,255,255,.96);
 
-border-radius:28px;
+backdrop-filter:blur(18px);
+
+border-radius:32px;
 
 overflow:hidden;
 
+border:1px solid rgba(255,255,255,.25);
+
 box-shadow:
 
-0 25px 60px rgba(0,0,0,.25);
+0 35px 80px rgba(0,0,0,.30);
 
-animation:fadeIn .6s ease;
+animation:fadeIn .7s ease;
 
 position:relative;
 
@@ -94,15 +144,15 @@ position:relative;
 
 @keyframes fadeIn{
 
-0%{
+from{
 
 opacity:0;
 
-transform:translateY(30px);
+transform:translateY(40px);
 
 }
 
-100%{
+to{
 
 opacity:1;
 
@@ -112,22 +162,47 @@ transform:translateY(0);
 
 }
 
+/* Header */
+
 .header{
 
 background:
 
 linear-gradient(
 135deg,
-#0b7a3e,
-#14984d);
+#056936,
+#0B7A3E,
+#19B45D);
 
-padding:35px 25px;
+padding:45px 25px;
 
 text-align:center;
 
+color:#fff;
+
 position:relative;
 
-color:#fff;
+overflow:hidden;
+
+}
+
+/* Decorative Circle */
+
+.header::before{
+
+content:"";
+
+position:absolute;
+
+width:220px;
+height:220px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+top:-90px;
+right:-60px;
 
 }
 
@@ -138,12 +213,10 @@ content:"";
 position:absolute;
 
 left:0;
-
 right:0;
+bottom:-28px;
 
-bottom:-22px;
-
-height:45px;
+height:55px;
 
 background:#fff;
 
@@ -151,11 +224,12 @@ border-radius:100%;
 
 }
 
+/* Logo */
+
 .logo{
 
-width:82px;
-
-height:82px;
+width:95px;
+height:95px;
 
 border-radius:50%;
 
@@ -169,17 +243,25 @@ align-items:center;
 
 margin:auto;
 
-font-size:40px;
+font-size:44px;
 
-color:#0b7a3e;
-
-box-shadow:
-
-0 12px 30px rgba(0,0,0,.25);
+color:#0B7A3E;
 
 position:relative;
 
-z-index:10;
+z-index:5;
+
+box-shadow:
+
+0 18px 35px rgba(0,0,0,.28);
+
+transition:.35s;
+
+}
+
+.logo:hover{
+
+transform:rotate(10deg) scale(1.05);
 
 }
 
@@ -187,433 +269,165 @@ z-index:10;
 
 margin-top:18px;
 
-font-size:25px;
+font-size:28px;
 
-font-weight:700;
+font-weight:800;
 
-letter-spacing:.3px;
+letter-spacing:.5px;
 
 position:relative;
 
-z-index:10;
+z-index:5;
 
 }
 
 .header p{
 
-margin-top:10px;
-
-font-size:14px;
-
-opacity:.95;
-
-position:relative;
-
-z-index:10;
-
-}
-
-.content{
-
-padding:55px 30px 30px;
-
-}
-/* ===========================
-   FORM ELEMENTS
-=========================== */
-
-label{
-display:block;
-margin-bottom:8px;
-font-size:14px;
-font-weight:600;
-color:#444;
-}
-
-.input-group{
-margin-bottom:22px;
-}
-
-.input-box{
-position:relative;
-}
-
-.input-box input,
-.input-box select{
-
-width:100%;
-height:58px;
-
-border:2px solid #e5e5e5;
-
-border-radius:15px;
-
-background:#fafafa;
-
-outline:none;
-
-padding:0 18px;
-
-font-size:15px;
-
-transition:.30s;
-
-color:#333;
-
-}
-
-.input-box input:focus,
-.input-box select:focus{
-
-border-color:#0b7a3e;
-
-background:#fff;
-
-box-shadow:
-0 0 0 5px rgba(11,122,62,.10);
-
-}
-
-.input-box input::placeholder{
-
-color:#999;
-
-}
-
-.prefix{
-
-position:absolute;
-
-left:18px;
-
-top:50%;
-
-transform:translateY(-50%);
-
-font-size:16px;
-
-font-weight:700;
-
-color:#0b7a3e;
-
-}
-
-#empid{
-
-padding-left:58px;
-
-}
-
-/* ===========================
-   BUTTONS
-=========================== */
-
-.button-row{
-
-display:flex;
-
-gap:14px;
-
 margin-top:8px;
 
-}
-
-button{
-
-flex:1;
-
-height:58px;
-
-border:none;
-
-border-radius:15px;
-
-cursor:pointer;
-
-font-size:16px;
-
-font-weight:600;
-
-color:#fff;
-
-transition:.30s;
-
-}
-
-.checkin-btn{
-
-background:linear-gradient(
-135deg,
-#0b7a3e,
-#18a84f);
-
-box-shadow:
-0 12px 25px rgba(11,122,62,.30);
-
-}
-
-.checkout-btn{
-
-background:linear-gradient(
-135deg,
-#d93025,
-#b71c1c);
-
-box-shadow:
-0 12px 25px rgba(217,48,37,.30);
-
-}
-
-button:hover{
-
-transform:translateY(-3px);
-
-}
-
-button:active{
-
-transform:scale(.98);
-
-}
-
-button:disabled{
-
-opacity:.6;
-
-cursor:not-allowed;
-
-transform:none;
-
-}
-
-/* ===========================
-   STATUS BOX
-=========================== */
-
-#msg{
-
-margin-top:24px;
-
-min-height:60px;
-
-padding:16px;
-border-radius:14px;
-
-background:#eef9f2;
-
-border:1px solid #d6f0df;
-
-color:#0b7a3e;
-
-font-weight:600;
-
 font-size:14px;
+
+opacity:.96;
+
+position:relative;
+
+z-index:5;
+
+}
+
+/* Status Badges */
+
+.badges{
 
 display:flex;
 
 justify-content:center;
 
-align-items:center;
+gap:10px;
 
-text-align:center;
+flex-wrap:wrap;
 
-line-height:1.5;
+margin-top:18px;
 
-transition:.30s;
+position:relative;
 
-}
-
-/* ===========================
-   LOADING
-=========================== */
-
-.loader{
-
-display:none;
-
-margin:18px auto;
-
-width:45px;
-
-height:45px;
-
-border:5px solid #ddd;
-
-border-top:5px solid #0b7a3e;
-
-border-radius:50%;
-
-animation:spin 1s linear infinite;
+z-index:5;
 
 }
 
-@keyframes spin{
+.badges span{
 
-100%{
+padding:7px 14px;
 
-transform:rotate(360deg);
+border-radius:30px;
 
-}
-
-}
-
-/* ===========================
-   FOOTER
-=========================== */
-
-.footer{
-
-padding:22px;
-
-text-align:center;
+background:rgba(255,255,255,.18);
 
 font-size:12px;
 
-background:#fafafa;
+font-weight:600;
 
-border-top:1px solid #eee;
-
-color:#888;
-
-}
-
-.footer strong{
-
-color:#0b7a3e;
-
-}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-
-@media(max-width:480px){
-
-.container{
-
-width:100%;
+backdrop-filter:blur(10px);
 
 }
 
 .content{
 
-padding:50px 20px 25px;
-
-}
-
-.header{
-
-padding:28px 18px;
-
-}
-
-.header h1{
-
-font-size:22px;
-
-}
-
-button{
-
-height:55px;
-
-font-size:15px;
-
-}
+padding:60px 30px 30px;
 
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- ===========================
-         HEADER
-    ============================ -->
+<div class="header">
 
-    <div class="header">
+<div class="logo">
 
-        <div class="logo">
-            <i class="fa-solid fa-location-dot"></i>
-        </div>
+<i class="fa-solid fa-location-dot"></i>
 
-        <h1>HQ NLC TPT FLEET GWA</h1>
+</div>
 
-        <p>Employee Attendance & GPS Tracking System</p>
+<h1>HQ NLC TPT FLEET GWA</h1>
 
-    </div>
+<p>Employee Attendance & GPS Tracking System</p>
 
-    <!-- ===========================
-         CONTENT
-    ============================ -->
+<div class="badges">
 
-    <div class="content">
+<span>📍 Live GPS</span>
 
-        <!-- Mobile -->
+<span>🔒 Secure</span>
 
-        <div class="input-group">
+<span>⚡ Real Time</span>
 
-            <label>
-                Employee Mobile Number
-            </label>
+</div>
 
-            <div class="input-box">
+</div>
 
-                <span class="prefix">
-                    +92
-                </span>
+<div class="content">
+<!-- ===========================
+     MOBILE NUMBER
+=========================== -->
 
-                <input
-                    type="tel"
-                    id="empid"
-                    maxlength="10"
-                    placeholder="3001234567"
-                    autocomplete="off">
+<div class="input-group">
 
-            </div>
+<label>Employee Mobile Number</label>
 
-        </div>
+<div class="input-box">
 
-        <!-- Employee Name -->
+<span class="prefix">+92</span>
 
-        <div class="input-group">
+<input
+type="tel"
+id="empid"
+maxlength="10"
+placeholder="3001234567"
+autocomplete="off">
 
-            <label>
-                Employee Name
-            </label>
+</div>
 
-            <div class="input-box">
+</div>
 
-                <input
-                    type="text"
-                    id="empname"
-                    placeholder="Enter Employee Name"
-                    autocomplete="off">
+<!-- ===========================
+     EMPLOYEE NAME
+=========================== -->
 
-            </div>
+<div class="input-group">
 
-        </div>
+<label>Employee Name</label>
 
-        <!-- Duty Station -->
+<div class="input-box">
 
-        <div class="input-group">
+<input
+type="text"
+id="empname"
+placeholder="Enter Employee Name"
+autocomplete="off">
 
-            <label>
-                Duty Station
-            </label>
+</div>
 
-            <div class="input-box">
+</div>
 
-                <select id="locationSelect">
+<!-- ===========================
+     DUTY STATION
+=========================== -->
 
-                    <option value="">
-                        Select Duty Station
-                    </option>
+<div class="input-group">
 
-                    <option value="CCI Lhr">CCI Lhr</option>
+<label>Duty Station</label>
+
+<div class="input-box">
+
+<select id="locationSelect">
+
+<option value="">📍 Select Duty Station</option>
+
+  <option value="CCI Lhr">CCI Lhr</option>
 
                     <option value="CCI Fsd">CCI Fsd</option>
 
@@ -630,77 +444,399 @@ font-size:15px;
                     <option value="FFC Hazara">FFC Hazara</option>
 
                     <option value="Proj Gwa">Proj Gwa</option>
-
+<option value="Proj Lhr">Proj Lhr</option>
+                      <option value="POF Wah Factories">POF Wah Factories</option>
+                      <option value="POF Sanjwal Cantt">POF Sanjwal Cantt</option>
+                      <option value="Tfs Bahawalpur">Tfs Bahawalpur</option>
+                      <option value="CC Beverages Fac Lhr">CC Beverages Fac Lhr</option>
+                      <option value="CC Warehouse Lhr">CC Warehouse Lhr</option>
+                      <option value="CC Distribution Lhr">CC Distribution Lhr</option>
+                      <option value="CC Main Office Fsd">CC Main Office Fsd</option>
+                      <option value="CC Fsd Plant">CC Fsd Plant</option>
                     <option value="ON LEAVE">
                         🌴 ON LEAVE
-                    </option>
 
-                </select>
+</select>
 
-            </div>
+</div>
 
-        </div>
+</div>
 
-        <!-- Buttons -->
+<!-- ===========================
+     REMARKS
+=========================== -->
 
-        <div class="button-row">
+<div class="input-group">
 
-            <button
-                id="btnIn"
-                class="checkin-btn">
+<label>Remarks (Optional)</label>
 
-                <i class="fa-solid fa-right-to-bracket"></i>
+<div class="input-box">
 
-                Check In</button>
+<input
+type="text"
+id="remarks"
+maxlength="150"
+placeholder="Enter any notes or remarks">
 
-            <button
-                id="btnOut"
-                class="checkout-btn">
+</div>
 
-                <i class="fa-solid fa-right-from-bracket"></i>
+</div>
+<!-- ===========================
+     BUTTONS
+=========================== -->
 
-                Check Out
+<div class="button-row">
 
-            </button>
+    <button
+        id="btnIn"
+        class="checkin-btn">
 
-        </div>
+        <i class="fa-solid fa-right-to-bracket"></i>
+        Check In
 
-        <!-- Loader -->
+    </button>
 
-        <div
-            class="loader"
-            id="loader">
-        </div>
+    <button
+        id="btnOut"
+        class="checkout-btn">
 
-        <!-- Status -->
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Check Out
 
-        <div id="msg">
+    </button>
 
-            Ready for Attendance...
+</div>
 
-        </div>
+<!-- ===========================
+     LOADER
+=========================== -->
+
+<div
+    id="loader"
+    class="loader">
+</div>
+
+<!-- ===========================
+     STATUS MESSAGE
+=========================== -->
+
+<div id="msg">
+
+    <i class="fa-solid fa-circle-check"
+       style="margin-right:8px;color:#0b7a3e;"></i>
+
+    Ready for Attendance...
+
+</div>
+
+</div>
+
+<!-- ===========================
+     FOOTER
+=========================== -->
+
+<div class="footer">
+
+    <div style="font-size:15px;font-weight:700;color:#0b7a3e;">
+
+        <i class="fa-solid fa-laptop-code"></i>
+
+        ICT GWA
 
     </div>
 
-    <!-- ===========================
-         FOOTER
-    ============================ -->
-
-    <div class="footer">
+    <div style="margin-top:6px;color:#777;">
 
         Developed by
 
         <strong>
-
-            ICT GWA |
             Syed Muhammad Sajjad Ali
-
         </strong>
+
+    </div>
+
+    <div style="margin-top:8px;font-size:11px;color:#999;">
+
+        HQ NLC TPT Fleet Attendance System © 2026
 
     </div>
 
 </div>
 
+<style>
+
+/* ===========================
+   FORM STYLING
+=========================== */
+
+.input-group{
+margin-bottom:22px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-size:13px;
+font-weight:600;
+color:#444;
+}
+
+.input-box{
+position:relative;
+}
+
+.prefix{
+
+position:absolute;
+
+left:18px;
+
+top:50%;
+
+transform:translateY(-50%);
+
+font-weight:700;
+
+font-size:16px;
+
+color:#0b7a3e;
+
+z-index:5;
+
+}
+
+#empid{
+padding-left:60px;
+}
+
+.input-box input,
+.input-box select{
+
+width:100%;
+
+height:60px;
+
+border:none;
+
+outline:none;
+
+border-radius:18px;
+
+padding:0 18px;
+
+background:#f4f7f8;
+
+box-shadow:
+inset 0 0 0 2px #e5ecef;
+
+font-size:15px;
+
+transition:.30s;
+
+}
+
+.input-box input:focus,
+.input-box select:focus{
+
+background:#fff;
+
+box-shadow:
+
+0 0 0 5px rgba(34,177,93,.12),
+
+inset 0 0 0 2px #0b7a3e;
+
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.button-row{
+
+display:flex;
+
+gap:14px;
+
+margin-top:12px;
+
+}
+
+button{
+
+flex:1;
+
+height:60px;
+
+border:none;
+
+border-radius:18px;
+
+font-size:16px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.30s;
+
+color:#fff;
+
+}
+
+.checkin-btn{
+
+background:
+
+linear-gradient(
+135deg,
+#0b7a3e,
+#22c55e);
+
+box-shadow:
+
+0 15px 30px rgba(34,197,94,.35);
+
+}
+
+.checkout-btn{
+
+background:
+
+linear-gradient(
+135deg,
+#ff4d4d,
+#c1121f);
+
+box-shadow:
+
+0 15px 30px rgba(255,0,0,.25);
+
+}
+
+button:hover{
+
+transform:translateY(-4px);
+
+}
+
+button:active{
+
+transform:scale(.98);
+
+}
+
+/* ===========================
+   LOADER
+=========================== */
+
+.loader{
+
+display:none;
+
+margin:22px auto;
+
+width:55px;
+
+height:55px;
+
+border:5px solid #ddd;
+
+border-top:5px solid #22b15d;
+
+border-radius:50%;
+
+animation:spin .8s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ===========================
+   STATUS BOX
+=========================== */
+
+#msg{
+
+margin-top:22px;
+
+padding:18px;
+
+border-radius:18px;
+
+background:#eefcf3;
+
+border-left:6px solid #0b7a3e;
+
+font-weight:600;
+
+text-align:center;
+
+color:#155724;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer{
+
+padding:22px;
+
+text-align:center;
+
+background:#fafafa;
+
+border-top:1px solid #eee;
+
+font-size:13px;
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:480px){
+
+.container{
+
+width:100%;
+
+border-radius:24px;
+
+}
+
+.content{
+
+padding:55px 20px 25px;
+
+}
+
+.button-row{
+
+flex-direction:column;
+
+}
+
+button{
+
+width:100%;
+
+}
+
+}
+
+</style>
 <!-- ===========================
      JAVASCRIPT
 =========================== -->
@@ -708,7 +844,7 @@ font-size:15px;
 <script>
 
 const script_url =
-"https://script.google.com/macros/s/AKfycbxQKjTJ9SWBQr3W8Q4IbN4GODHBtjikIX95jGbOKGxTiIHKEn9CtAhdV-VoxbZO38WPfQ/exec";
+"https://script.google.com/macros/s/AKfycbz_NS4wpAGeZcjATGYP_X8zmjuag9f-V4NphiCbOKtl_vWfH7mfXrVhXqcgz94H4Ubf/exec";
 
 const loader =
 document.getElementById("loader");
@@ -730,7 +866,8 @@ document.getElementById("empname");
 
 const locationSelect =
 document.getElementById("locationSelect");
-
+const remarks =
+document.getElementById("remarks");
 /* ===========================================
    PART 4
    Utility Functions & Event Handlers
@@ -938,7 +1075,8 @@ async function sendLocation(actionType) {
 
     // ON LEAVE
     if (locationSelect.value === "ON LEAVE") {
-
+const remarks =
+document.getElementById("remarks");
         const payload = {
 
             Type: actionType,
@@ -954,7 +1092,7 @@ async function sendLocation(actionType) {
             Accuracy: "N/A",
 
             City: "ON LEAVE",
-
+            Remarks: remarks.value.trim(),
             BatteryPercentage: await getBatteryStatus(),
 
             MobileType: getDeviceOS(),
@@ -1006,6 +1144,7 @@ DeviceToken: generateDeviceFingerprint() + "-" + empid.value.trim(),
 
                 City:locationSelect.value,
 
+ Remarks: remarks.value.trim(),   // <-- Ye line add karo
                 BatteryPercentage: await getBatteryStatus(),
 
                 MobileType: getDeviceOS(),
@@ -1131,7 +1270,7 @@ async function postAttendance(payload){
             empname.value="";
 
             locationSelect.selectedIndex=0;
-
+remarks.value="";
         }else{
 
             showMessage(
